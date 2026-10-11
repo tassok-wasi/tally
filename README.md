@@ -9,9 +9,32 @@ budgets, and emit machine-readable output.
 ## Build & install
 
 ```sh
+make                  # build ./tally
+make install          # build and copy the binary to ~/.local/bin
+```
+
+A `Makefile` wraps the common tasks — run `make help` to list them:
+
+| Target | Description |
+|--------|-------------|
+| `make` / `make build` | Build the `tally` binary. |
+| `make install` | Build and install to `$(BINDIR)` (default `~/.local/bin`). |
+| `make uninstall` | Remove the installed binary. |
+| `make test` | Run the test suite. |
+| `make test-race` | Run tests with the race detector. |
+| `make cover` | Run tests with a coverage summary. |
+| `make fmt` / `make vet` / `make lint` | Format and vet the sources. |
+| `make tidy` | Tidy `go.mod`/`go.sum`. |
+| `make run ARGS="..."` | Build and run against the current directory. |
+| `make clean` | Remove build artifacts. |
+
+Plain Go builds still work:
+
+```sh
 go build -o tally .
 ./install.sh          # copies the binary to ~/.local/bin (linux only)
 ```
+
 
 ## Usage
 

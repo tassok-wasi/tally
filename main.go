@@ -4,7 +4,7 @@ import (
 	"github.com/alecthomas/kong"
 )
 
-const version = "tally 1.0.0"
+var version = "tally v1.0.0"
 
 // CLI is the root command. Running it with no subcommand counts lines/files by
 // extension in the current directory (or -d); the other commands are

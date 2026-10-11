@@ -3,6 +3,10 @@ PKG     := .
 PREFIX  ?= $(HOME)/.local
 BINDIR  ?= $(PREFIX)/bin
 GO      ?= go
+VERSION     ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
+VERSION_STR := tally $(VERSION)
+LDFLAGS     := -X 'main.version=$(VERSION_STR)'
+
 
 .DEFAULT_GOAL := build
 
@@ -11,7 +15,7 @@ GO      ?= go
 all: build ## Alias for build.
 
 build: ## Build the tally binary.
-	$(GO) build -o $(BINARY) $(PKG)
+	$(GO) build -ldflags "$(LDFLAGS)" -o $(BINARY) $(PKG)
 
 install: build ## Build and install the binary to $(BINDIR).
 	install -d $(BINDIR)
